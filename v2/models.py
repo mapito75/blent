@@ -47,3 +47,30 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.email} ({self.role})>'
+
+
+class Product(db.Model):
+    """Représente un produit disponible à la vente sur DigiMarket."""
+    __tablename__ = 'product'
+
+    id = db.Column(db.Integer, primary_key=True)
+    nom = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text)
+    categorie = db.Column(db.String(50), nullable=False)
+    prix = db.Column(db.Float, nullable=False)
+    quantite_stock = db.Column(db.Integer, default=0)
+    date_creation = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
+
+    def to_dict(self):
+        """Sérialise le produit en dictionnaire JSON-compatible."""
+        return {
+            'id': self.id,
+            'nom': self.nom,
+            'description': self.description,
+            'categorie': self.categorie,
+            'prix': self.prix,
+            'quantite_stock': self.quantite_stock
+        }
+
+    def __repr__(self):
+        return f'<Product {self.nom}>'

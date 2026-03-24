@@ -23,6 +23,7 @@ def create_app():
 
     # Flask place le fichier dans instance/ par défaut avec sqlite:/// (chemin relatif)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///digimarket.db'
+    app.json.ensure_ascii = False  # Retourne les accents en UTF-8 plutôt qu'en \uXXXX
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'ceciestunesecretkey')
 
@@ -32,7 +33,9 @@ def create_app():
         db.create_all()
 
     from blueprints.auth import auth_bp
+    from blueprints.products import products_bp
     app.register_blueprint(auth_bp)
+    app.register_blueprint(products_bp)
 
     return app
 
