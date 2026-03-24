@@ -7,7 +7,7 @@ def print_response(response):
 
 
 rep = requests.post("http://127.0.0.1:5000/api/auth/register", json={ "email": "jean@example.com", "password": "motdepasse123",
-  "first_name": "Jean", "last_name": "Dupont", "role": "client" }
+  "nom": "Jean Dupont", "role": "client" }
 )
 
 
