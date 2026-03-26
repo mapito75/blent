@@ -1,0 +1,16 @@
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Pytest
+.pytest_cache/
+
+# Base de données locale
+*.db
+
+# Variables d'environnement
+.env
+
+# macOS
+.DS_Store
