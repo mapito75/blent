@@ -40,8 +40,10 @@ def create_app(test_config=None):
 
     from blueprints.auth import auth_bp
     from blueprints.products import products_bp
+    from blueprints.orders import orders_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(products_bp)
+    app.register_blueprint(orders_bp)
 
     return app
 
