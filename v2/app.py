@@ -8,13 +8,16 @@ from flask import Flask
 from models import db
 
 
-def create_app():
+def create_app(test_config=None):
     """Crée et configure l'application Flask.
 
     1. Configure la base SQLite et la clé secrète JWT
     2. Initialise SQLAlchemy
     3. Crée les tables manquantes
     4. Enregistre les blueprints
+
+    Args:
+        test_config (dict, optional): surcharge de configuration pour les tests.
 
     Returns:
         Flask: l'instance configurée
@@ -26,6 +29,9 @@ def create_app():
     app.json.ensure_ascii = False  # Retourne les accents en UTF-8 plutôt qu'en \uXXXX
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'ceciestunesecretkey')
+
+    if test_config:
+        app.config.update(test_config)
 
     db.init_app(app)
 
