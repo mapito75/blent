@@ -159,7 +159,7 @@ def update_statut(commande_id):
 
     if not nouveau_statut or nouveau_statut not in Order.STATUTS:
         return jsonify({
-            'error': f'Statut invalide. Valeurs acceptées : {", ".join(Commande.STATUTS)}'
+            'error': f'Statut invalide. Valeurs acceptées : {", ".join(Order.STATUTS)}'
         }), 400
 
     commande.statut = nouveau_statut
